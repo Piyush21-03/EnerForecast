@@ -1,8 +1,53 @@
-# Energy Consumption Forecasting System
+# EnerForecast ⚡
 
-Status: **Phase 1 - project structure only.** No application logic yet.
+### Energy Consumption Forecasting & Analytics
 
-Training happens in Google Colab (`notebooks/energy_forecasting_training.ipynb`).
-The FastAPI backend only loads exported artifacts and never retrains.
+EnerForecast is an end-to-end machine learning application for forecasting electricity consumption from historical energy usage data. The system combines time-series feature engineering, LightGBM forecasting, FastAPI, PostgreSQL, and a React dashboard to provide a production-oriented forecasting workflow.
 
-Full setup, API and artifact documentation will be completed in Phase 16.
+## 🚀 Features
+
+- 📊 Historical energy consumption analysis
+- 🔮 24-hour energy consumption forecasting
+- 🤖 LightGBM-based machine learning model
+- 🧠 Time-series lag and rolling-window features
+- 📅 Calendar and cyclical time features
+- ⚡ FastAPI REST API for predictions
+- 🗄️ PostgreSQL database integration
+- 💻 React + Tailwind CSS dashboard
+- 🧪 Automated backend testing with Pytest
+- 🐳 Docker-ready architecture
+- 📈 Forecast and historical consumption visualization
+
+## 🏗️ Architecture
+
+```text
+                    ┌─────────────────────┐
+                    │   Energy Dataset    │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Data Processing &    │
+                    │ Feature Engineering  │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ LightGBM Forecasting │
+                    │       Model         │
+                    └──────────┬──────────┘
+                               │
+                         Model Artifact
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │      FastAPI        │
+                    │    Backend API      │
+                    └───────┬─────┬───────┘
+                            │     │
+                 ┌──────────┘     └──────────┐
+                 ▼                           ▼
+        ┌─────────────────┐        ┌─────────────────┐
+        │   PostgreSQL    │        │ React Dashboard │
+        │    Database     │        │  + Tailwind CSS │
+        └─────────────────┘        └─────────────────┘
