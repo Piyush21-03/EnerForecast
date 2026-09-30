@@ -1,0 +1,22 @@
+# Runtime only - inference service. No training libraries (optuna, shap, statsmodels) here.
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+sqlalchemy
+alembic
+psycopg2-binary
+lightgbm
+scikit-learn
+pandas
+numpy
+joblib
+python-dotenv
+
+# Dev / test
+pytest
+pytest-cov
+httpx
+ruff
+black
+mypy
