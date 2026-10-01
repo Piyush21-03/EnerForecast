@@ -1,0 +1,21 @@
+{
+  "model_name": "lightgbm_energy_forecaster",
+  "model_version": "1.0.0",
+  "algorithm": "LightGBM Regressor",
+  "target": "energy_kwh",
+  "unit": "kWh",
+  "frequency": "hourly",
+  "features_count": 24,
+  "training_date": "2026-09-30 17:26:50 UTC",
+  "hyperparameters": {
+    "n_estimators": 1500,
+    "learning_rate": 0.01,
+    "num_leaves": 127,
+    "max_depth": 10,
+    "min_child_samples": 15,
+    "subsample": 0.85,
+    "colsample_bytree": 0.85,
+    "reg_alpha": 0.1,
+    "reg_lambda": 2.0
+  }
+}

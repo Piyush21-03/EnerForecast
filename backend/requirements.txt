@@ -1,0 +1,15 @@
+# Runtime dependencies only - the production image installs just this file.
+# Training libraries (optuna, shap, statsmodels, ...) belong to the Colab notebook, not here.
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+sqlalchemy
+alembic
+psycopg2-binary
+lightgbm
+scikit-learn
+pandas
+numpy
+joblib
+python-dotenv

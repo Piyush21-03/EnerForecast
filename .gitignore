@@ -1,0 +1,16 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+node_modules/
+dist/
+.ipynb_checkpoints/
+# Large data - never commit
+data/*.csv
+data/*.parquet
+mlruns/
+.DS_Store
