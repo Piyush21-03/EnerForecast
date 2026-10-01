@@ -14,3 +14,5 @@ data/*.csv
 data/*.parquet
 mlruns/
 .DS_Store
+
+local_backup.dump
