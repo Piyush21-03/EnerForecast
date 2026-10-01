@@ -20,6 +20,7 @@ from app.core.logging import setup_logging
 from app.db.database import get_session_factory
 from app.repositories.forecast_repository import ForecastRepository
 from app.repositories.model_repository import ModelRepository
+from app.services.artifact_manager import ArtifactManager
 from app.services.feature_service import FeatureService
 from app.services.forecast_service import ForecastService
 from app.services.history_provider import CsvHistoryProvider
@@ -64,6 +65,30 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     app.state.model_service = model_service
     app.state.forecast_service = None
     app.state.history = None
+    app.state.artifact_manager = None
+
+    # ---- Neon Object Storage: ensure bucket exists & pull artifacts ----------
+    if settings.use_neon_storage:
+        try:
+            logger.info(
+                "Neon Object Storage enabled — bucket='%s'. "
+                "Downloading artifacts (already-local files are skipped)…",
+                settings.neon_bucket_name,
+            )
+            artifact_manager = ArtifactManager.from_settings(settings)
+            app.state.artifact_manager = artifact_manager
+            summary = artifact_manager.pull_all()
+            for key, result in summary.items():
+                logger.info("  [%s] %s", result.upper(), key)
+        except Exception:  # noqa: BLE001
+            logger.exception(
+                "Neon Object Storage bootstrap failed; "
+                "will attempt to load from local disk anyway."
+            )
+    else:
+        logger.info("USE_NEON_STORAGE=false — using local disk paths only.")
+
+    # ---- Model + history load -----------------------------------------------
     try:
         model_service.load()
         history = CsvHistoryProvider(settings.history_data_path)

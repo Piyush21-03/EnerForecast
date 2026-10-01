@@ -13,3 +13,6 @@ pandas
 numpy
 joblib
 python-dotenv
+# Neon Object Storage: S3-compatible client used by app/core/storage.py
+boto3
+boto3
